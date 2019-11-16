@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button button;
+    private EditText toastInput;
+
 
     private Toast toast;
 
@@ -16,12 +21,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.main_button);
+        button = findViewById(R.id.main_button);
+        toastInput = findViewById(R.id.toast_edit_text);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("toast message");
+                showToast(toastInput.getText().toString());
             }
         });
 
@@ -29,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showToast(String message) {
-        if ( toast == null){
+        if (toast == null) {
             toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        }else {
+        } else {
             toast.setText(message);
         }
         toast.show();
